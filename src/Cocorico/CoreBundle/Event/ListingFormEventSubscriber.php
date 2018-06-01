@@ -7,6 +7,7 @@ use Cocorico\CoreBundle\Event\ListingFormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\Isbn;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ListingFormEventSubscriber implements EventSubscriberInterface
 {
@@ -33,6 +34,7 @@ class ListingFormEventSubscriber implements EventSubscriberInterface
             'label' => 'listing.form.isbn',
             'required' => true,
             'constraints' => [
+                new NotBlank(),
                 new Isbn(['type' => 'isbn10'])
             ]
         ]);

@@ -41,10 +41,10 @@ class BookingSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            BookingEvents::BOOKING_NEW_CREATED => array(
-                array('createNewListingThread', 1),
-                array('notifyAdminOnNewBooking', 1),
-            )
+            BookingEvents::BOOKING_NEW_CREATED => [
+                ['createNewListingThread', 1],
+                ['notifyAdminOnNewBooking', 1],
+            ]
         );
     }
 
