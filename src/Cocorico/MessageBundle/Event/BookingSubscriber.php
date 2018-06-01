@@ -14,6 +14,7 @@ namespace Cocorico\MessageBundle\Event;
 
 use Cocorico\CoreBundle\Event\BookingEvent;
 use Cocorico\CoreBundle\Event\BookingEvents;
+use Cocorico\CoreBundle\Mailer\TwigSwiftMailer;
 use Cocorico\MessageBundle\Model\ThreadManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -22,28 +23,53 @@ class BookingSubscriber implements EventSubscriberInterface
 {
     protected $threadManager;
 
+    protected $mailer;
+
     /**
      * @param ThreadManager $threadManager
      */
-    public function __construct(ThreadManager $threadManager)
+    public function __construct(ThreadManager $threadManager, TwigSwiftMailer $mailer)
     {
         $this->threadManager = $threadManager;
+        $this->mailer = $mailer;
     }
 
 
-    public function onBookingNewCreated(BookingEvent $event)
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return array(
+            BookingEvents::BOOKING_NEW_CREATED => array(
+                array('createNewListingThread', 1),
+                array('notifyAdminOnNewBooking', 1),
+            )
+        );
+    }
+
+    /**
+     * @param \Cocorico\CoreBundle\Event\BookingEvent $event
+     */
+    public function createNewListingThread(BookingEvent $event)
     {
         $booking = $event->getBooking();
         $user = $booking->getUser();
         $this->threadManager->createNewListingThread($user, $booking);
     }
 
-
-    public static function getSubscribedEvents()
+    /**
+     * @param \Cocorico\CoreBundle\Event\BookingEvent $event
+     */
+    public function notifyAdminOnNewBooking(BookingEvent $event)
     {
-        return array(
-            BookingEvents::BOOKING_NEW_CREATED => array('onBookingNewCreated', 1),
-        );
+        $booking = $event->getBooking();
+        $user = $booking->getUser();
+
+        $subject = "New booking #{$booking->getId()}";
+        $message = "New booking #{$booking->getId()} from {$user->getFullName()}";
+
+        $this->mailer->sendMessageToAdmin($subject, $message);
     }
 
 }
