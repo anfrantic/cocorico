@@ -55,6 +55,20 @@
                             </div>
 
                             <div class="form-listing-info">
+                                <h2>{{ 'listing.description.isbn'|trans }}</h2>
+                                {{ form_errors(form.isbn) }}
+                                <span class="label">{{ form_label(form.isbn) }}</span>
+
+                                <div class="field-holder">
+                                    {{ form_widget(form.isbn, {
+                                        'attr': {
+                                            'class': "form-control"
+                                        }
+                                    }) }}
+                                </div>
+                            </div>
+
+                            <div class="form-listing-info">
                                 <h2>{{ 'listing.description.title'|trans }}</h2>
                                 {#For html customizations see views\form\translations.html.twig#}
                                 {{ form_widget(form.translations) }}

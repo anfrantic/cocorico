@@ -78,6 +78,13 @@ abstract class BaseListing
     );
 
     /**
+     * @ORM\Column(name="isbn", type="integer", nullable=false)
+     *
+     * @var integer
+     */
+    protected $isbn;
+
+    /**
      * @ORM\Column(name="status", type="smallint", nullable=false)
      *
      * @var integer
@@ -173,6 +180,29 @@ abstract class BaseListing
     public function __call($method, $arguments)
     {
         return $this->proxyCurrentLocaleTranslation($method, $arguments);
+    }
+
+    /**
+     * Get ISBN
+     *
+     * @return int
+     */
+    public function getIsbn()
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * Set ISBN
+     *
+     * @param integer $isbn
+     * @return $this
+     */
+    public function setIsbn($isbn)
+    {
+        $this->isbn = $isbn;
+
+        return $this;
     }
 
     /**
