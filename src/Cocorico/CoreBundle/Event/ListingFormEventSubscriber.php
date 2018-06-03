@@ -33,10 +33,11 @@ class ListingFormEventSubscriber implements EventSubscriberInterface
         $form->add('isbn', TextType::class, [
             'label' => 'listing.form.isbn',
             'required' => true,
-            'constraints' => [
-                new NotBlank(),
-                new Isbn(['type' => 'isbn10'])
-            ]
+            // Moved validation to entity but also could be done here as well
+            //'constraints' => [
+            //    new NotBlank(),
+            //    new Isbn(['type' => 'isbn10'])
+            //]
         ]);
     }
 }

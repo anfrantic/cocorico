@@ -26,19 +26,17 @@ use Cocorico\GeoBundle\Entity\Coordinate;
 use Cocorico\GeoBundle\Entity\Country;
 use Cocorico\GeoBundle\Entity\Department;
 use Cocorico\UserBundle\Entity\User;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Cocorico\CoreBundle\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadListingData extends AbstractFixture implements OrderedFixtureInterface
 {
-
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-
         //GeoGraphical entities
         $country = new Country();
         $country->setCode("FR");
@@ -111,6 +109,7 @@ class LoadListingData extends AbstractFixture implements OrderedFixtureInterface
 
         //Listing
         $listing = new Listing();
+        $listing->setIsbn($this->faker->isbn13); // used faker here =)
         $listing->setLocation($location);
         $listing->addImage($image1);
         $listing->addImage($image2);

@@ -13,7 +13,7 @@ namespace Cocorico\CoreBundle\DataFixtures\ORM;
 
 use Cocorico\CoreBundle\Entity\ListingCharacteristicType;
 use Cocorico\CoreBundle\Entity\ListingCharacteristicValue;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Cocorico\CoreBundle\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 

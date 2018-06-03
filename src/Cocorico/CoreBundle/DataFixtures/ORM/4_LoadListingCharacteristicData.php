@@ -14,7 +14,7 @@ namespace Cocorico\CoreBundle\DataFixtures\ORM;
 use Cocorico\CoreBundle\Entity\ListingCharacteristic;
 use Cocorico\CoreBundle\Entity\ListingCharacteristicGroup;
 use Cocorico\CoreBundle\Entity\ListingCharacteristicType;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Cocorico\CoreBundle\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 

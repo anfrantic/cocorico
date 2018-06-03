@@ -78,7 +78,9 @@ abstract class BaseListing
     );
 
     /**
-     * @ORM\Column(name="isbn", type="integer", nullable=false)
+     * @ORM\Column(name="isbn", type="bigint", nullable=false)
+     * @Assert\Isbn(type="isbn13", message="assert.isbn")
+     * @Assert\NotBlank(message="assert.not_blank")
      *
      * @var integer
      */
@@ -185,7 +187,7 @@ abstract class BaseListing
     /**
      * Get ISBN
      *
-     * @return int
+     * @return integer
      */
     public function getIsbn()
     {

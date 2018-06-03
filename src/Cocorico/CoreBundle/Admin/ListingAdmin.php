@@ -73,6 +73,13 @@ class ListingAdmin extends Admin
         $formMapper
             ->with('admin.listing.title')
             ->add(
+                'isbn',
+                null,
+                [
+                    'label' => 'admin.listing.isbn.label',
+                ]
+            )
+            ->add(
                 'status',
                 'choice',
                 array(
@@ -249,6 +256,13 @@ class ListingAdmin extends Admin
     {
         $datagridMapper
             ->add(
+                'isbn',
+                null,
+                [
+                    'label' => 'admin.listing.isbn.label',
+                ]
+            )
+            ->add(
                 'fullName',
                 'doctrine_orm_callback',
                 array(
@@ -423,6 +437,13 @@ class ListingAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add(
+              'isbn',
+              null,
+              [
+                  'label' => 'admin.listing.isbn.label'
+              ]
+            )
             ->add(
                 'statusText',
                 null,
